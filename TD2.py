@@ -117,7 +117,7 @@ def Enregistrement(clef):
 regles_V2 = [
     {
         "nomRegle": "règle Bonjour",
-        "motif": "[B|b]onjour",
+        "motif": "([B|b])onjour",
         "reponse": "Bonjour, que puis-je faire pour vous ?",
         #Le score est l'importance accordé à la reconnaissance du motif dans une prompt (1<2<3<4<5).
         "score": 5,
@@ -140,7 +140,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Questionnement",
-        "motif": "([E|e]s ce que tu es sûr",
+        "motif": "([E|e])s ce que tu es sûr",
         "reponse": "Ma base de données n'est pas complète. Cependant, je vous invite à contacter mes créateurs (Luka Baudrant et David Baldo) afin de les aider à créer une intéligence artificielle plus efficace !",
         "score": 4,
         "fonction": None
@@ -377,6 +377,7 @@ regles_V2 = [
         "fonction": None
     }
 ]
+
 
 def trouve_regle(regle):
     indices = 0
