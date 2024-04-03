@@ -140,7 +140,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Questionnement",
-        "motif": "([E|e])s ce que tu es sûr",
+        "motif": ".*tu es sûr",
         "reponse": "Ma base de données n'est pas complète. Cependant, je vous invite à contacter mes créateurs (Luka Baudrant et David Baldo) afin de les aider à créer une intéligence artificielle plus efficace !",
         "score": 4,
         "fonction": None
@@ -161,31 +161,10 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Presentation2",
-        "motif": "mon nom c'est .*",
+        "motif": "([J|j]e m'appelle|[M|m]on nom c'est|[J'|j']m'appelle)*",
         "reponse": "Enchanté, moi je m'appelle LD.",
         "score": 5,
         "fonction": Enregistrement("nom")
-    },
-    {
-        "nomRegle": "règle Presentation3",
-        "motif": "j'm'appelle .*",
-        "reponse": "Enchanté, moi je m'appelle LD.",
-        "score": 5,
-        "fonction": Enregistrement("prénom")
-    },
-    {
-        "nomRegle": "règle Presentation4",
-        "motif": "je m'appelle .*",
-        "reponse": "Enchanté, moi je m'appelle LD.",
-        "score": 5,
-        "fonction": Enregistrement("prénom")
-    },
-    {
-        "nomRegle": "règle Code",
-        "motif": "quel est ton jeu langaue de programmation préféré",
-        "reponse": "J'hésite entre Rust et Python...",
-        "score": 4,
-        "fonction": Enregistrement("code")
     },
     {
         "nomRegle": "règle Emotion1",
