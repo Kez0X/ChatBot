@@ -73,10 +73,10 @@ regles_V1 = [
         "tu * crushs", 
         "Je craque sur ChatGPT, ma petite luciole !"],
     ["règle Humeur", 
-        "(C|ç)a va", 
+        "ça va", 
         "ça va super bien, merci."],
     ["Langages de programmation préférés",
-        ".*(t|T)on langage de programmation préféré",
+        "Quel sont tes langages de programmation préférés",
         "Mes langages préférés sont Python et JavaScript. Python pour sa lisibilité et sa polyvalence, et JavaScript pour son utilisation côté client et côté serveur."],
     ["Différence langage interprété et compilé",
         "Pouve-tu expliquer la différence entre un langage de programmation interprété et un langage de programmation compilé ?",
@@ -117,28 +117,30 @@ def Enregistrement(clef):
 regles_V2 = [
     {
         "nomRegle": "règle Bonjour",
-        "motif": "\\b(?:bonjour|Bonjour)\\b",
+        "motif": "[B|b]onjour",
         "reponse": "Bonjour, que puis-je faire pour vous ?",
+        #Le score est l'importance accordé à la reconnaissance du motif dans une prompt (1<2<3<4<5).
         "score": 5,
+        #C'est ici que les fonctions sont associé aux dictionnaires
         "fonction": None
     },
     {
         "nomRegle": "règle Salut",
-        "motif": "\\b(?:salut|Salut|Salutations|salutations|salutation|Salutation)\\b",
-        "reponse": "Salut, je peux t'aider",
+        "motif": "(salut|Salut|Salutations|salutations|salutation|Salutation)",
+        "reponse": "Salut, comment puis-je vous aider ?",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Remerciement",
-        "motif": "\\b(?:merci bien|Merci bien)\\b",
+        "motif": "(Merci|merci|merci bien|Merci bien)",
         "reponse": "Pas de souci !",
         "score": 3,
         "fonction": None
     },
     {
         "nomRegle": "règle Questionnement",
-        "motif": "es sûr de .*",
+        "motif": "([E|e]s ce que tu es sûr",
         "reponse": "Ma base de données n'est pas complète. Cependant, je vous invite à contacter mes créateurs (Luka Baudrant et David Baldo) afin de les aider à créer une intéligence artificielle plus efficace !",
         "score": 4,
         "fonction": None
@@ -285,14 +287,14 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Humeur",
-        "motif": "ça va",
+        "motif": "(Ca|ça|ca) va",
         "reponse": "ça va super bien",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Langages de programmation préférés",
-        "motif": "\\b(?:ton|vos)\\b langage[es|s] de programmation préférés",
+        "motif": ".*(tes|vos|Tes|Vos) langages de programmation préférés",
         "reponse": "Mes langages préférés sont Python et JavaScript. Python pour sa lisibilité et sa polyvalence, et JavaScript pour son utilisation côté client et côté serveur.",
         "score": 5,
         "fonction": None
