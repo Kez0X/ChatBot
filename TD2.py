@@ -109,83 +109,86 @@ regles_V1 = [
         "Je ne sais pas"]
 ]
 
-def Enregistrement(clef):
-    #On enregistre le contenu du motif dans un JSON
-    return None
+infos_utilisateur = {}
 
+def afficheIdentité(listeArgs):
+    for infos in infos_utilisateur:
+        print("Vous êtes",infos_utilisateur[infos],".\n")
+
+def enregistrer_genre_utilisateur(listeArgs):
+    reponse_utilisateur, reponse_bot = listeArgs
+    genre_utilisateur_match = re.search(r"(?i)je suis (un|une)\s+(.+)", reponse_utilisateur)
+    if genre_utilisateur_match:
+        genre_utilisateur = genre_utilisateur_match.group(2)
+        infos_utilisateur["genre"] = genre_utilisateur
+        print("Genre de l'utilisateur enregistré :", genre_utilisateur)
+
+def enregistrer_type_utilisateur(listeArgs):
+    infos_utilisateur["type"] = "malaisant"
+    print("Le type de l'utilisateur ",infos_utilisateur["nom"]," est : malaisant")
+
+def enregistrer_nom_utilisateur(listeArgs):
+    reponse_utilisateur, reponse_bot = listeArgs
+    nom_utilisateur_match = re.search(r"(?i)je m'appelle\s+(\w+)", reponse_utilisateur)
+    if nom_utilisateur_match:
+        nom_utilisateur = nom_utilisateur_match.group(1)
+        infos_utilisateur["nom"] = nom_utilisateur
+        print("Nom de l'utilisateur enregistré :", nom_utilisateur)
 
 regles_V2 = [
     {
+        # On a le nom de la règle
         "nomRegle": "règle Bonjour",
-        "motif": "([B|b])onjour",
+        # Le motif, il faudra qu'il y est ce motif dans la demande rentrée par l'utilisateur
+        "motif": "[b|B][o|ô|ó|ò]n[j|g]o[u|ù|ú|ü]r",
+        # La réponse que l'on va renvoyer
         "reponse": "Bonjour, que puis-je faire pour vous ?",
-        #Le score est l'importance accordé à la reconnaissance du motif dans une prompt (1<2<3<4<5).
+        #Le score est l'importance accordé à la reconnaissance du motif dans un prompt (1<2<3<4<5).
         "score": 5,
-        #C'est ici que les fonctions sont associé aux dictionnaires
+        #C'est ici que les fonctions sont associées aux dictionnaires
         "fonction": None
     },
     {
         "nomRegle": "règle Salut",
-        "motif": "(salut|Salut|Salutations|salutations|salutation|Salutation)",
+        "motif": "(?i)salut",
         "reponse": "Salut, comment puis-je vous aider ?",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Remerciement",
-        "motif": "(Merci|merci|merci bien|Merci bien)",
+        "motif": "(?i)merci",
         "reponse": "Pas de souci !",
         "score": 3,
         "fonction": None
     },
     {
         "nomRegle": "règle Questionnement",
-        "motif": "([E|e])s ce que tu es sûr",
+        "motif": "(?i)([E|e])s ce que tu es sûr\?",
         "reponse": "Ma base de données n'est pas complète. Cependant, je vous invite à contacter mes créateurs (Luka Baudrant et David Baldo) afin de les aider à créer une intéligence artificielle plus efficace !",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle DemandeIdee",
-        "motif": "tu penses à qu",
+        "motif": "(?i)([T|t])u penses à qu\?",
         "reponse": "Je ne pense pas, j'agis !",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Presentation1",
-        "motif": "je m'appelle Henry",
+        "motif": "(?i)je m'appelle\s+(\w+)",
         "reponse": "Enchanté, moi je m'appelle LD, il semble que j'ai égaré mon V quelque part...",
         "score": 5,
-        "fonction": Enregistrement("prénom")
-    },
-    {
-        "nomRegle": "règle Presentation2",
-        "motif": "mon nom c'est .*",
-        "reponse": "Enchanté, moi je m'appelle LD.",
-        "score": 5,
-        "fonction": Enregistrement("nom")
-    },
-    {
-        "nomRegle": "règle Presentation3",
-        "motif": "j'm'appelle .*",
-        "reponse": "Enchanté, moi je m'appelle LD.",
-        "score": 5,
-        "fonction": Enregistrement("prénom")
-    },
-    {
-        "nomRegle": "règle Presentation4",
-        "motif": "je m'appelle .*",
-        "reponse": "Enchanté, moi je m'appelle LD.",
-        "score": 5,
-        "fonction": Enregistrement("prénom")
+        "fonction": enregistrer_nom_utilisateur
     },
     {
         "nomRegle": "règle Code",
-        "motif": "quel est ton jeu langaue de programmation préféré",
+        "motif": "(?i)quel est ton lang(?:age|aue) de programmation préfér(?:é|e|ée)\?",
         "reponse": "J'hésite entre Rust et Python...",
         "score": 4,
-        "fonction": Enregistrement("code")
+        "fonction": None
     },
     {
         "nomRegle": "règle Emotion1",
@@ -196,18 +199,36 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Emotion2",
-        "motif": "est-ce que .*",
-        "reponse": "Je ne pratique pas ce genre de chose.",
+        "motif": "(?i)est-ce que tu (\w+\s+){1,2}\?",
+        "reponse": "Je suis navré, je ne pratique pas ce genre de chose...",
         "score": 3,
-        "fonction": None
+        "fonction": enregistrer_type_utilisateur
+    },
+    {
+        "nomRegle": "règle Identité",
+        "motif": "(?i)comment (?:me|nous)\s+\w+\s+tu\s+\?",
+        "reponse": "\n",
+        "score": 5,
+        "fonction": afficheIdentité
+    },
+    {
+        "nomRegle": "règle genre",
+        "motif": "(?i)je suis (un|une)\s+(.+)",
+        "reponse": "Enchanté, moi je suis une machine.",
+        "score": 4,
+        "fonction": enregistrer_genre_utilisateur
     },
     {
         "nomRegle": "règle Passion",
-        "motif": "qu'est-ce qui te passionne",
+        "motif": "(?i)(?:quoi|qu'est[- ]ce qui) te passionne\?",
         "reponse": "Le code principalement, et en suite, le code.",
         "score": 5,
         "fonction": None
     },
+
+    ### Ne pas toucher aux regexs mis plus haut !!!!
+
+
     {
         "nomRegle": "règle Projets",
         "motif": "est.ce que tu as des projets",
@@ -239,7 +260,7 @@ regles_V2 = [
     {
         "nomRegle": "règle Fringues",
         "motif": "t'aimes.*vêtements",
-        "reponse": "Je suis trop fan de mes nouveaux vêtements, mon reuf !",
+        "reponse": "Je suis trop fan de ces nouveaux vêtements",
         "score": 5,
         "fonction": None
     },
@@ -369,10 +390,17 @@ regles_V2 = [
         "score": 5,
         "fonction": None
     },
+     {
+        "nomRegle": "Calcul",
+        "motif": "(?=.*\bcalcule\b)(?=.*\bmoi\b).+",
+        "reponse": "Bien sûr je vais vous calculer tout cela",
+        "score": 5,
+        "fonction": None
+    },
     {
         "nomRegle": "règle JeSaisPas",
         "motif": ".*",
-        "reponse": "Je ne sais pas",
+        "reponse": "Je suis navré mais je n'ai pas compris votre question",
         "score": 1,
         "fonction": None
     }
@@ -395,12 +423,11 @@ def trouve_regle(regle):
             max = response["score"]
             priorities = response
     if priorities["fonction"]!=None:
-        execute(priorities["fonction"])
-    
+        execute(priorities["fonction"],[regle,priorities["reponse"]])
     return priorities["reponse"]
         
-def execute(fonction):
-    return fonction
+def execute(fonction,listeArgs):
+    return fonction(listeArgs)
 
 rep = input("\nBonjour, je suis LD, vous pouvez me poser une question ? (Pour arrêter, dites 'stop')\n > ")
 while rep != 'stop':
