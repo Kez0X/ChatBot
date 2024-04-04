@@ -112,8 +112,11 @@ regles_V1 = [
 infos_utilisateur = {}
 
 def afficheIdentité(listeArgs):
-    for infos in infos_utilisateur:
-        print("Vous êtes",infos_utilisateur[infos],".\n")
+    if len(infos_utilisateur) == 0:
+        print("Vous êtes celui que je dépasserais un jour !")
+    else :
+        for infos in infos_utilisateur:
+            print("Vous êtes",infos_utilisateur[infos],".\n")
 
 def enregistrer_genre_utilisateur(listeArgs):
     reponse_utilisateur, reponse_bot = listeArgs
@@ -192,7 +195,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Emotion1",
-        "motif": "comment tu te sens en ce moment",
+        "motif": "(?i)comment.*sens.*\?",
         "reponse": "Je suis une machine, je ne ressens pas.",
         "score": 4,
         "fonction": None
@@ -231,7 +234,7 @@ regles_V2 = [
 
     {
         "nomRegle": "règle Projets",
-        "motif": "est.ce que tu as des projets",
+        "motif": "(?i)est.ce que tu as des projets",
         "reponse": "Je suis en train de coder en Rust !",
         "score": 4,
         "fonction": None
