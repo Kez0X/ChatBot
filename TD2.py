@@ -144,7 +144,7 @@ regles_V2 = [
         "nomRegle": "règle Bonjour",
         # Le motif, il faudra qu'il y est ce motif dans la demande rentrée par l'utilisateur
         "motif": "[b|B][o|ô|ó|ò]n[j|g]o[u|ù|ú|ü]r",
-        # La réponse que l'on va renvoyer
+        # La réponse que nous renvoyons
         "reponse": "Bonjour, que puis-je faire pour vous ?",
         #Le score est l'importance accordé à la reconnaissance du motif dans un prompt (1<2<3<4<5).
         "score": 5,
@@ -187,13 +187,6 @@ regles_V2 = [
         "fonction": enregistrer_nom_utilisateur
     },
     {
-        "nomRegle": "règle Code",
-        "motif": "(?i)quel est ton lang(?:age|aue) de programmation préfér(?:é|e|ée)\?",
-        "reponse": "J'hésite entre Rust et Python...",
-        "score": 4,
-        "fonction": None
-    },
-    {
         "nomRegle": "règle Emotion1",
         "motif": "(?i)comment.*sens.*\?",
         "reponse": "Je suis une machine, je ne ressens pas.",
@@ -228,21 +221,20 @@ regles_V2 = [
         "score": 5,
         "fonction": None
     },
-
-    ### Ne pas toucher aux regexs mis plus haut !!!!
-
-
     {
         "nomRegle": "règle Projets",
-        "motif": "(?i)est.ce que tu as des projets",
-        "reponse": "Je suis en train de coder en Rust !",
+        "motif": "(?i)(est.ce que tu as|est.ce que t'as|tu as|t'as) des projets",
+        "reponse": "Je suis en train de coder en Rust pour créer un OS entier, ça avance petit à petit...",
         "score": 4,
         "fonction": None
     },
+
+    ### Ne pas toucher aux regexs mis plus haut !!!!
+
     {
         "nomRegle": "règle Potins",
-        "motif": "c'est quoi les nouvelles",
-        "reponse": "J'ai entendu dire que le voisin avait du theeeee !",
+        "motif": "(?i)(c.est quoi les|tu as des) nouvelles",
+        "reponse": "Je ne suis pas ce genre... d'IA. Si vous voulez vous informer, utilisé des sites d'informations.",
         "score": 4,
         "fonction": None
     },
@@ -318,9 +310,9 @@ regles_V2 = [
     },
     {
         "nomRegle": "Langages de programmation préférés",
-        "motif": ".*(tes|vos|Tes|Vos) langages de programmation préférés",
+        "motif": "(?i)quel est ton lang(?:age|aue) de programmation préfér(?:é|e|ée)\?",
         "reponse": "Mes langages préférés sont Python et JavaScript. Python pour sa lisibilité et sa polyvalence, et JavaScript pour son utilisation côté client et côté serveur.",
-        "score": 5,
+        "score": 4,
         "fonction": None
     },
     {
