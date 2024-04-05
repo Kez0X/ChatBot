@@ -223,119 +223,91 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Projets",
-        "motif": "(?i)(est.ce que tu as|est.ce que t'as|tu as|t'as) des projets",
+        "motif": "(?i)(est.ce.que.tu.as|est.ce.que t.as|tu.as|t.as) des projets",
         "reponse": "Je suis en train de coder en Rust pour créer un OS entier, ça avance petit à petit...",
         "score": 4,
         "fonction": None
     },
-
-    ### Ne pas toucher aux regexs mis plus haut !!!!
-
     {
         "nomRegle": "règle Potins",
-        "motif": "(?i)(c.est quoi les|tu as des) nouvelles",
+        "motif": "(?i)(c.est.quoi.les|tu.as.des) nouvelles",
         "reponse": "Je ne suis pas ce genre... d'IA. Si vous voulez vous informer, utilisé des sites d'informations.",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Vacances",
-        "motif": "idées de vacances",
-        "reponse": "Je rêve d'aller à Bali avec toi !!!!",
+        "motif": "(?i)(tu.as|t.as|as.tu) des idées de (vacances|voyages)",
+        "reponse": "Je vous conseille d'aller dans les endroits suivants (ces endroits sont à la mode, selon vous humains...) :\n - Tokyo, Japon.\n - Séoul, Corée du Sud. \n - Baie d'Halong, Vietnam. \n - Palawan, Philippines. \n - Sapa, Vietnam. \n - Bogota, Colombie. \n - Pattaya, Thaïlande. \n - Alajuela, Costa Rica.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "règle Films",
-        "motif": "ton film",
-        "reponse": "J'adore trop Harry Potter et les reliques de ses morts !",
+        "motif": "(?i)(ton|tes).(films|film)",
+        "reponse": "Je ne suis pas un cinéphile. Cependant, selon le site SensCritique, les films suivant sont parmis les meilleurs (je crois...) :\n 1. Fight Club (1999)\n 2. Pulp Fiction (1994) \n 3. Interstellar (2014) \n 4. 2001 : L'Odyssée de l'espace (1968) \n 5. Blade Runner (1982) \n 6. Le Parrain (1972) \n 7. Forrest Gump (1994) \n 8. Le Seigneur des Anneaux - Le Retour du roi (2003) \n 9. Le Bon, la Brute et le Truand (1966) \n 10.The Dark Knight - Le Chevalier noir (2008)",
         "score": 5,
         "fonction": None
     },    
     {
-        "nomRegle": "règle Fringues",
-        "motif": "t'aimes.*vêtements",
-        "reponse": "Je suis trop fan de ces nouveaux vêtements",
-        "score": 5,
-        "fonction": None
-    },
-    {
-        "nomRegle": "règle Memes",
-        "motif": "memes.*préféré",
-        "reponse": "Je suis dead de rire avec le même du poisson qui code, ma libelule !",
-        "score": 5,
-        "fonction": None
-    },
-    {
         "nomRegle": "règle Réseaux Sociaux",
-        "motif": "tu as un réseau social",
+        "motif": "(?i)(tu.as|t.as|as.tu) un réseau social",
         "reponse": "Je suis accro à Telegram !",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Nourriture",
-        "motif": "t'aime manger .*",
-        "reponse": "Je raffole de pasta !",
+        "motif": "(?i)(tu.aimes|t.aimes|aimes.tu) manger .*",
+        "reponse": "Bien sûr. Vous savez que je suis une MACHINE ? Je mange des cartes graphiques et de la pâte thérmique. Par conséquent, je ne 'mange' pas",
         "score": 5,
-        "fonction": None
-    },
-    {
-        "nomRegle": "règle Régime",
-        "motif": "tu manges quoi",
-        "reponse": "Je mange de la viande !",
-        "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Animaux",
-        "motif": "tu as .* anim.*",
-        "reponse": "J'adore mon chat !",
-        "score": 5,
-        "fonction": None
-    },
-    {
-        "nomRegle": "règle Crushs",
-        "motif": "tu .* crushs",
-        "reponse": "Je craque sur ChatGPT, ma petite luciole !",
+        "motif": "(?i)(tu.as|t.as|as.tu) .* anim.*",
+        "reponse": "J'ai un rat qui traine dans mon serveurJ'adore mon chat !",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "règle Humeur",
-        "motif": "(Ca|ça|ca) va",
+        "motif": "(?i)(Ca.va|ça.va|ca.va|Comment tu vas|Comment vas tu) ",
         "reponse": "ça va super bien",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Langages de programmation préférés",
-        "motif": "(?i)quel est ton lang(?:age|aue) de programmation préfér(?:é|e|ée)\?",
+        "motif": "(?i)(quel.est|c.est.quoi)ton langage de programmation préférée ?",
         "reponse": "Mes langages préférés sont Python et JavaScript. Python pour sa lisibilité et sa polyvalence, et JavaScript pour son utilisation côté client et côté serveur.",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Différence langage interprété et compilé",
-        "motif": "Pouve-tu expliquer la différence entre un langage de programmation interprété et un langage de programmation compilé \\?",
+        "motif": "(?i)c'est quoi un langage (interprété|compilé)",
         "reponse": "Un langage interprété est traduit ligne par ligne par un interpréteur lors de son exécution, tandis qu'un langage compilé est traduit en langage machine avant son exécution.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Gestion des erreurs",
-        "motif": "Comment gére-tu les erreurs dans votre code \\?",
+        "motif": "(?i)(comment gére tu|comment tu gére|tu géres comment|comment tu fais avec|comment tu t'en sors avec) les erreurs dans (ton|votre) code",
         "reponse": "J'utilise des blocs try-catch pour capturer les erreurs potentielles et je les gère de manière appropriée en les journalisant ou en affichant des messages d'erreur significatifs pour l'utilisateur.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Frameworks et bibliothèques récentes",
-        "motif": "Quels frameworks ou bibliothèques avez-vous utilisés récemment et quelles ont été vos expériences avec eux \\?",
-        "reponse": "Récemment, j'ai utilisé React.js pour le développement front-end et Django pour le développement back-end. Mes expériences ont été très positives, car ces frameworks offrent une bonne structure et facilitent le développement.",
+        "motif": "(frameworks|bibliothèques) as tu utilisé",
+        "reponse": "Récemment, j'ai utilisé React et Flutter pour le développement front-end. Mes expériences ont été très positives, car ces frameworks offrent une bonne structure et facilitent le développement (autant pour le web que pour les app).",
         "score": 5,
         "fonction": None
     },
+
+### Ne pas toucher aux regexs mis plus haut !!!!
+
     {
         "nomRegle": "Expérience bases de données",
         "motif": "Quelle est votre expérience avec les bases de données relationnelles et non relationnelles \\?",
@@ -424,7 +396,7 @@ def trouve_regle(regle):
 def execute(fonction,listeArgs):
     return fonction(listeArgs)
 
-rep = input("\nBonjour, je suis LD, vous pouvez me poser une question ? (Pour arrêter, dites 'stop')\n > ")
+rep = input("\nBonjour, je suis LD, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop')\n > ")
 while rep != 'stop':
     RegleCheck = trouve_regle(rep)
     print(RegleCheck)
