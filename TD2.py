@@ -358,9 +358,30 @@ regles_V2 = [
         "fonction": None
     },
      {
-        "nomRegle": "Calcul",
+        "nomRegle": "Addition",
         "motif": "(?=.*\bcalcule\b)(?=.*\bmoi\b).+",
-        "reponse": "Bien sûr je vais vous calculer tout cela",
+        "reponse": "Bien sûr, je vais additionner ces deux valeurs",
+        "score": 5,
+        "fonction": None
+    },
+    {
+        "nomRegle": "Soustraction",
+        "motif": " ",
+        "reponse": "Bien sûr, je vais soustraire la valeur numéro 2 à la valeur numéro 1",
+        "score": 5,
+        "fonction": None
+    },
+    {
+        "nomRegle": "Division",
+        "motif": " ",
+        "reponse": "Bien sûr, je vais diviser la valeur numéro 2 à la valeur numéro 1",
+        "score": 5,
+        "fonction": None
+    },
+    {
+        "nomRegle": "Multiplication",
+        "motif": " ",
+        "reponse": "Bien sûr, je vais multiplier ces deux valeur",
         "score": 5,
         "fonction": None
     },
@@ -369,6 +390,13 @@ regles_V2 = [
         "motif": ".*",
         "reponse": "Je suis navré mais je n'ai pas compris votre question",
         "score": 1,
+        "fonction": None
+    },
+    {
+        "nomRegle": "règle help",
+        "motif": "help",
+        "reponse": "Voici certaines de mes fonctionnalité : \n- Pour vous adresser à moi, tutoyer moi 😉 \n- Je m'appelle ... -> Enregistre le nom de l'utilisateur",
+        "score": 5,
         "fonction": None
     }
 ]
