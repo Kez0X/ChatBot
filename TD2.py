@@ -223,41 +223,40 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle Passion",
-        "motif": "(?i)(?:quoi|qu'est[- ]ce qui) te passionne\?",
+        "motif": "(?i).*(passionne).*\?",
         "reponse": "Le code principalement, et en suite, le code.",
         "score": 5,
         "fonction": None
     },
 
-    ### Ne pas toucher aux regexs mis plus haut !!!!
-
-
+    ## Tout marche au dessus
+    
     {
         "nomRegle": "règle Projets",
-        "motif": "(?i)est.ce que tu as des projets",
+        "motif": "(?i)des projets\?",
         "reponse": "Je suis en train de coder en Rust !",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Potins",
-        "motif": "c'est quoi les nouvelles",
-        "reponse": "J'ai entendu dire que le voisin avait du theeeee !",
+        "motif": "(?i)c('est|e)st?.*\b(nouvelles?|actualité|informations?)\b",
+        "reponse": "J'ai entendu dire que le voisin avait du the, il faudrait aller en boire avec lui un de ces quatres !",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "règle Vacances",
-        "motif": "idées de vacances",
+        "motif": "(?i)idées?\s+de\s+vacances\?",
         "reponse": "Je rêve d'aller à Bali avec toi !!!!",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "règle Films",
-        "motif": "ton film",
+        "motif": "(?i)(film[s]?|movie[s]?|cinéma|voir)\s+(aimé|préféré|idée)\s+\w+",
         "reponse": "J'adore trop Harry Potter et les reliques de ses morts !",
-        "score": 5,
+        "score": 3,
         "fonction": None
     },    
     {
