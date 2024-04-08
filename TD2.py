@@ -138,6 +138,18 @@ def enregistrer_nom_utilisateur(listeArgs):
         infos_utilisateur["nom"] = nom_utilisateur
         print("Nom de l'utilisateur enregistré :", nom_utilisateur)
 
+def addition(listeArgs):
+    pass
+
+def soustraction(listeArgs):
+    pass
+
+def division(listeArgs):
+    pass
+
+def multiplication(listeArgs):
+    pass
+
 regles_V2 = [
     {
         # On a le nom de la règle
@@ -266,8 +278,8 @@ regles_V2 = [
     {
         "nomRegle": "règle Animaux",
         "motif": "(?i)(tu.as|t.as|as.tu) .* anim.*",
-        "reponse": "J'ai un rat qui traine dans mon serveurJ'adore mon chat !",
-        "score": 5,
+        "reponse": "J'ai un rat qui traine dans mon serveur. J'adore mon chat !",
+        "score": 3,
         "fonction": None
     },
     {
@@ -279,14 +291,14 @@ regles_V2 = [
     },
     {
         "nomRegle": "Langages de programmation préférés",
-        "motif": "(?i)(quel.est|c.est.quoi)ton langage de programmation préférée ?",
+        "motif": "(?i)(quel.est|c.est.quoi)ton langage de programmation préférée\?",
         "reponse": "Mes langages préférés sont Python et JavaScript. Python pour sa lisibilité et sa polyvalence, et JavaScript pour son utilisation côté client et côté serveur.",
         "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Différence langage interprété et compilé",
-        "motif": "(?i)c'est quoi un langage (interprété|compilé)",
+        "motif": "(?i)c'est quoi un langage (interprété|compilé)\?",
         "reponse": "Un langage interprété est traduit ligne par ligne par un interpréteur lors de son exécution, tandis qu'un langage compilé est traduit en langage machine avant son exécution.",
         "score": 5,
         "fonction": None
@@ -362,28 +374,28 @@ regles_V2 = [
         "motif": "(?=.*\bcalcule\b)(?=.*\bmoi\b).+",
         "reponse": "Bien sûr, je vais additionner ces deux valeurs",
         "score": 5,
-        "fonction": None
+        "fonction": addition
     },
     {
         "nomRegle": "Soustraction",
         "motif": " ",
         "reponse": "Bien sûr, je vais soustraire la valeur numéro 2 à la valeur numéro 1",
         "score": 5,
-        "fonction": None
+        "fonction": soustraction
     },
     {
         "nomRegle": "Division",
         "motif": " ",
         "reponse": "Bien sûr, je vais diviser la valeur numéro 2 à la valeur numéro 1",
         "score": 5,
-        "fonction": None
+        "fonction": division
     },
     {
         "nomRegle": "Multiplication",
         "motif": " ",
         "reponse": "Bien sûr, je vais multiplier ces deux valeur",
         "score": 5,
-        "fonction": None
+        "fonction": multiplication
     },
     {
         "nomRegle": "règle JeSaisPas",
