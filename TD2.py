@@ -305,7 +305,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "Gestion des erreurs",
-        "motif": "(?i)(comment gére tu|comment tu gére|tu géres comment|comment tu fais avec|comment tu t'en sors avec) les erreurs dans (ton|votre) code",
+        "motif": "(?i)(comment.gére.tu|comment.tu.gére|tu.géres.comment|comment.tu.fais.avec|comment.tu.t.en.sors.avec) les erreurs dans (ton|votre) code",
         "reponse": "J'utilise des blocs try-catch pour capturer les erreurs potentielles et je les gère de manière appropriée en les journalisant ou en affichant des messages d'erreur significatifs pour l'utilisateur.",
         "score": 5,
         "fonction": None
@@ -319,52 +319,44 @@ regles_V2 = [
     },
 
 ### Ne pas toucher aux regexs mis plus haut !!!!
-
-    {
-        "nomRegle": "Expérience bases de données",
-        "motif": "Quelle est votre expérience avec les bases de données relationnelles et non relationnelles \\?",
-        "reponse": "J'ai travaillé avec des bases de données relationnelles telles que MySQL et PostgreSQL, ainsi qu'avec des bases de données non relationnelles comme MongoDB. Je suis à l'aise avec les deux et je choisis en fonction des besoins spécifiques du projet.",
-        "score": 5,
-        "fonction": None
-    },
     {
         "nomRegle": "Versionnage du code source",
-        "motif": "Qu'est-ce que le versionnage du code source et quels sont ses avantages \\?",
+        "motif": "(?i)(qu.est.ce.que.le |c.est.quoi.le )versionnage du code source.*",
         "reponse": "Le versionnage du code source consiste à garder une trace des modifications apportées au code au fil du temps à l'aide de systèmes de contrôle de version comme Git. Cela permet de suivre les changements, de collaborer efficacement et de revenir à des versions antérieures si nécessaire.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Méthodes GET et POST",
-        "motif": "Pouvez-tu expliquer la différence entre les méthodes GET et POST dans les requêtes HTTP \\?",
+        "motif": "(?i)expliqu(e|er).*différence entre.*GET et POST.*",
         "reponse": "La méthode GET est utilisée pour demander des données à un serveur, tandis que la méthode POST est utilisée pour envoyer des données à un serveur pour traitement.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Sécurité dans les applications",
-        "motif": "Comment gérez-vous la sécurité dans vos applications \\?",
+        "motif": "(?i)(gérez.vous|géres.tu|vous.gérez.comment|comment.gére.tu|comment.tu.gére|tu.géres.comment|comment.tu.fais.avec|comment.tu.t.en.sors.avec) la sécurité dans (tes|vos) application",
         "reponse": "Je sécurise mes applications en utilisant des pratiques telles que la validation des données d'entrée, l'authentification et l'autorisation appropriées, le chiffrement des données sensibles et la protection contre les attaques courantes telles que les injections SQL et les attaques CSRF.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Bonnes pratiques de performance",
-        "motif": "Quelles sont les bonnes pratiques que vous suivez pour assurer la performance de votre code \\?",
+        "motif": "(?i)(la|les) bonn(es|e) pratiques.*code",
         "reponse": "Je m'assure d'écrire un code propre et optimisé, j'utilise des algorithmes efficaces, j'optimise les requêtes de base de données et jefais attention à la gestion des ressources pour garantir des performances optimales.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Documentation du code",
-        "motif": "Comment abordez-vous la documentation de votre code \\?",
+        "motif": "(?i)(vous.gérez.comment|comment.gére.tu|comment.tu.gére|tu.géres.comment|comment.tu.fais.avec|comment.tu.t.en.sors.avec) la documentation de.*code.*",
         "reponse": "Je documente mon code de manière claire et concise en utilisant des commentaires compréhensibles pour expliquer le but, le fonctionnement et les entrées/sorties des fonctions et des modules.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Enregistrement du nom",
-        "motif": "je m'appelle .*",
+        "motif": "(je.m.appelle|mon.nom.c.est) .*",
         "reponse": "Enchanté, je me nomme LD, je suis une IA spécialisé dans l'informatique.",
         "score": 5,
         "fonction": None
@@ -406,7 +398,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle help",
-        "motif": "help",
+        "motif": "[.|/]help",
         "reponse": "Voici certaines de mes fonctionnalité : \n- Pour vous adresser à moi, tutoyer moi 😉 \n- Je m'appelle ... -> Enregistre le nom de l'utilisateur",
         "score": 5,
         "fonction": None
@@ -436,7 +428,7 @@ def trouve_regle(regle):
 def execute(fonction,listeArgs):
     return fonction(listeArgs)
 
-rep = input("\nBonjour, je suis LD, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop')\n > ")
+rep = input("\nBonjour, je suis LD, un ChatBot d'informatique, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop')\n > ")
 while rep != 'stop':
     RegleCheck = trouve_regle(rep)
     print(RegleCheck)
