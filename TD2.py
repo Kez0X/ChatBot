@@ -109,9 +109,16 @@ regles_V1 = [
         "Je ne sais pas"]
 ]
 
+
+# Le dictionnaire dans lequel on stock les informations de l'utilisateur
 infos_utilisateur = {}
 
 def afficheIdentité(listeArgs):
+    """
+    Entrée : listeArgs : la liste des arguments
+    Sortie : ///
+    Fonction : Permet d'afficher les informations de l'utilisateur
+    """
     if len(infos_utilisateur) == 0:
         print("Vous êtes celui que je dépasserais un jour !")
     else :
@@ -183,6 +190,7 @@ def multiplication(listeArgs):
     else:
         print("Impossible d'effectuer la multiplication. Au moins deux valeurs sont nécessaires.")
 
+# La liste des règles
 regles_V2 = [
     {
         # On a le nom de la règle
@@ -438,28 +446,44 @@ regles_V2 = [
 
 
 def trouve_regle(regle):
+    """
+    Entrée : regle : une phrase donnée par l'utilisateur
+    Sortie : La réponse à cette phrase
+    Fonction : Permet de trouver la réponse associé à la phrase
+    """
+    # On initialise un indice à 0
     indices = 0
     rep = []
+    # On recherche dans notre dictionnaire regles_V2, le motif correpondant à la phrase
     for indices in range(len(regles_V2)):
         pattern = re.compile(regles_V2[indices]["motif"])
         response = pattern.finditer(regle)
         pos = [motif.span() for motif in response] 
+        # On récupère toutes les règles correspondantes
         if len(pos) > 0:
             rep.append(regles_V2[indices])
+    # On va chercher la règle qui a le plus haut score d'importance
     priorities = rep[0]
     max = rep[0]["score"]
     for response in rep:
         if response["score"] > max:
             max = response["score"]
             priorities = response
+    # Si il y a une fonction associé à la règle alors on doit l'executée
     if priorities["fonction"]!=None:
         execute(priorities["fonction"],[regle,priorities["reponse"]])
+    # On retourne la réponse associée
     return priorities["reponse"]
         
 def execute(fonction,listeArgs):
+    """
+    Entrée : une fonction et la liste des arguments
+    Sortie : la fonction avec en paramètre la liste des arguments
+    Fonction : Permet d'executer la fonction d'entrée
+    """
     return fonction(listeArgs)
 
-rep = input("\nBonjour, je suis LD, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop' & pour demander de l'aide dites'/help')\n > ")
+rep = input("\nBonjour, je suis LD, un chat bot informatique, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop' & pour demander de l'aide dites'/help')\n > ")
 while rep != 'stop':
     RegleCheck = trouve_regle(rep)
     print(RegleCheck)
