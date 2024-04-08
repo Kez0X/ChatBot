@@ -139,16 +139,49 @@ def enregistrer_nom_utilisateur(listeArgs):
         print("Nom de l'utilisateur enregistré :", nom_utilisateur)
 
 def addition(listeArgs):
-    pass
+    reponse_utilisateur, reponse_bot = listeArgs
+    valeurs_match = re.findall(r"\b(\d+)\b", reponse_utilisateur)
+    if len(valeurs_match) >= 2:
+        valeurs = [int(val) for val in valeurs_match]
+        resultat = sum(valeurs)
+        print("Résultat de l'addition :", resultat)
+    else:
+        print("Impossible d'effectuer l'addition. Au moins deux valeurs sont nécessaires.")
 
 def soustraction(listeArgs):
-    pass
+    reponse_utilisateur, reponse_bot = listeArgs
+    valeurs_match = re.findall(r"\b(\d+)\b", reponse_utilisateur)
+    if len(valeurs_match) >= 2:
+        valeur1, valeur2 = int(valeurs_match[0]), int(valeurs_match[1])
+        resultat = valeur1 - valeur2
+        print("Résultat de la soustraction :", resultat)
+    else:
+        print("Impossible d'effectuer la soustraction. Au moins deux valeurs sont nécessaires.")
 
 def division(listeArgs):
-    pass
+    reponse_utilisateur, reponse_bot = listeArgs
+    valeurs_match = re.findall(r"\b(\d+)\b", reponse_utilisateur)
+    if len(valeurs_match) >= 2:
+        valeur1, valeur2 = int(valeurs_match[0]), int(valeurs_match[1])
+        if valeur2 != 0:
+            resultat = valeur1 / valeur2
+            print("Résultat de la division :", resultat)
+        else:
+            print("Division par zéro. Impossible de diviser.")
+    else:
+        print("Impossible d'effectuer la division. Au moins deux valeurs sont nécessaires.")
 
 def multiplication(listeArgs):
-    pass
+    reponse_utilisateur, reponse_bot = listeArgs
+    valeurs_match = re.findall(r"\b(\d+)\b", reponse_utilisateur)
+    if len(valeurs_match) >= 2:
+        valeurs = [int(val) for val in valeurs_match]
+        resultat = 1
+        for val in valeurs:
+            resultat *= val
+        print("Résultat de la multiplication :", resultat)
+    else:
+        print("Impossible d'effectuer la multiplication. Au moins deux valeurs sont nécessaires.")
 
 regles_V2 = [
     {
@@ -286,7 +319,7 @@ regles_V2 = [
         "nomRegle": "règle Humeur",
         "motif": "(?i)(Ca.va|ça.va|ca.va|Comment tu vas|Comment vas tu) ",
         "reponse": "ça va super bien",
-        "score": 4,
+        "score": 2,
         "fonction": None
     },
     {
@@ -307,93 +340,83 @@ regles_V2 = [
         "nomRegle": "Gestion des erreurs",
         "motif": "(?i)(comment gére tu|comment tu gére|tu géres comment|comment tu fais avec|comment tu t'en sors avec) les erreurs dans (ton|votre) code",
         "reponse": "J'utilise des blocs try-catch pour capturer les erreurs potentielles et je les gère de manière appropriée en les journalisant ou en affichant des messages d'erreur significatifs pour l'utilisateur.",
-        "score": 5,
+        "score": 3,
         "fonction": None
     },
     {
         "nomRegle": "Frameworks et bibliothèques récentes",
-        "motif": "(frameworks|bibliothèques) as tu utilisé",
+        "motif": "(frameworks|bibliothèques) as tu",
         "reponse": "Récemment, j'ai utilisé React et Flutter pour le développement front-end. Mes expériences ont été très positives, car ces frameworks offrent une bonne structure et facilitent le développement (autant pour le web que pour les app).",
         "score": 5,
         "fonction": None
     },
-
-### Ne pas toucher aux regexs mis plus haut !!!!
-
     {
         "nomRegle": "Expérience bases de données",
-        "motif": "Quelle est votre expérience avec les bases de données relationnelles et non relationnelles \\?",
-        "reponse": "J'ai travaillé avec des bases de données relationnelles telles que MySQL et PostgreSQL, ainsi qu'avec des bases de données non relationnelles comme MongoDB. Je suis à l'aise avec les deux et je choisis en fonction des besoins spécifiques du projet.",
-        "score": 5,
+        "motif": "bases de données|SQL",
+        "reponse": "J'ai travaillé avec des bases de données relationnelles telles que MySQL et PostgreSQL, ainsi qu'avec des bases de données non relationnelles comme MongoDB. Je suis à l'aise avec les deux et je choisis la meilleure solution en fonction des besoins spécifiques du projet.",
+        "score": 3,
         "fonction": None
     },
     {
         "nomRegle": "Versionnage du code source",
-        "motif": "Qu'est-ce que le versionnage du code source et quels sont ses avantages \\?",
+        "motif": "versionnage",
         "reponse": "Le versionnage du code source consiste à garder une trace des modifications apportées au code au fil du temps à l'aide de systèmes de contrôle de version comme Git. Cela permet de suivre les changements, de collaborer efficacement et de revenir à des versions antérieures si nécessaire.",
-        "score": 5,
+        "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Méthodes GET et POST",
-        "motif": "Pouvez-tu expliquer la différence entre les méthodes GET et POST dans les requêtes HTTP \\?",
+        "motif": "(?i)(?=.*\\bget\\b)(?=.*\\bpost\\b)|(?=.*\\bpost\\b)(?=.*\\bget\\b).+",
         "reponse": "La méthode GET est utilisée pour demander des données à un serveur, tandis que la méthode POST est utilisée pour envoyer des données à un serveur pour traitement.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Sécurité dans les applications",
-        "motif": "Comment gérez-vous la sécurité dans vos applications \\?",
+        "motif": "(?=.*\\bsécurité\\b)(?=.*\\bapplication\\b).+",
         "reponse": "Je sécurise mes applications en utilisant des pratiques telles que la validation des données d'entrée, l'authentification et l'autorisation appropriées, le chiffrement des données sensibles et la protection contre les attaques courantes telles que les injections SQL et les attaques CSRF.",
         "score": 5,
         "fonction": None
     },
     {
         "nomRegle": "Bonnes pratiques de performance",
-        "motif": "Quelles sont les bonnes pratiques que vous suivez pour assurer la performance de votre code \\?",
+        "motif": "(?=.*\\bbonnes pratiques\\b)(?=.*\\?).+",
         "reponse": "Je m'assure d'écrire un code propre et optimisé, j'utilise des algorithmes efficaces, j'optimise les requêtes de base de données et jefais attention à la gestion des ressources pour garantir des performances optimales.",
-        "score": 5,
+        "score": 4,
         "fonction": None
     },
     {
         "nomRegle": "Documentation du code",
-        "motif": "Comment abordez-vous la documentation de votre code \\?",
+        "motif": "(?=.*\\bdocumentation\\b)(?=.*\\bcode\\b).+",
         "reponse": "Je documente mon code de manière claire et concise en utilisant des commentaires compréhensibles pour expliquer le but, le fonctionnement et les entrées/sorties des fonctions et des modules.",
-        "score": 5,
+        "score": 2,
         "fonction": None
     },
     {
-        "nomRegle": "Enregistrement du nom",
-        "motif": "je m'appelle .*",
-        "reponse": "Enchanté, je me nomme LD, je suis une IA spécialisé dans l'informatique.",
-        "score": 5,
-        "fonction": None
-    },
-     {
         "nomRegle": "Addition",
-        "motif": "(?=.*\bcalcule\b)(?=.*\bmoi\b).+",
-        "reponse": "Bien sûr, je vais additionner ces deux valeurs",
+        "motif": "(?=.*\\badditionne\\b)(?=.*\\bmoi\\b).+",
+        "reponse": "",
         "score": 5,
         "fonction": addition
     },
     {
         "nomRegle": "Soustraction",
-        "motif": " ",
-        "reponse": "Bien sûr, je vais soustraire la valeur numéro 2 à la valeur numéro 1",
+        "motif": "(?=.*\\bsoustrais\\b)(?=.*\\bmoi\\b).+",
+        "reponse": "",
         "score": 5,
         "fonction": soustraction
     },
     {
         "nomRegle": "Division",
-        "motif": " ",
-        "reponse": "Bien sûr, je vais diviser la valeur numéro 2 à la valeur numéro 1",
+        "motif": "(?=.*\\bdivise\\b)(?=.*\\bmoi\\b).+",
+        "reponse": "",
         "score": 5,
         "fonction": division
     },
     {
         "nomRegle": "Multiplication",
-        "motif": " ",
-        "reponse": "Bien sûr, je vais multiplier ces deux valeur",
+        "motif": "(?=.*\\bmultiplie\\b)(?=.*\\bmoi\\b).+.+",
+        "reponse": "",
         "score": 5,
         "fonction": multiplication
     },
@@ -406,8 +429,8 @@ regles_V2 = [
     },
     {
         "nomRegle": "règle help",
-        "motif": "help",
-        "reponse": "Voici certaines de mes fonctionnalité : \n- Pour vous adresser à moi, tutoyer moi 😉 \n- Je m'appelle ... -> Enregistre le nom de l'utilisateur",
+        "motif": "help|aide moi|aides-moi|/help",
+        "reponse": "Voici certaines de mes fonctionnalités :\n- Pour vous adresser à moi, tutoyez-moi 😉\n- Pour enregistrez le nom de l'utilisateur -> Je m'appelle ... \n- Pour faire une addition -> additionne moi ... et/+/avec/... ... \n- Pour faire une soustraction -> soustrais moi ... et/-/avec/... ... \n- Pour faire une division -> divise moi ... et/:/avec/... ... \n- Pour faire une multiplication -> multiplie moi ... et/*/avec/... ... \n- Pour le reste posez diverses questions... \n- Pour affichez vos informations enregistrées tapez : comment me vois tu ? \n",
         "score": 5,
         "fonction": None
     }
@@ -436,7 +459,7 @@ def trouve_regle(regle):
 def execute(fonction,listeArgs):
     return fonction(listeArgs)
 
-rep = input("\nBonjour, je suis LD, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop')\n > ")
+rep = input("\nBonjour, je suis LD, vous pouvez me poser une question. S'il vous plaît, tutoyer moi ;) (Pour arrêter, dites 'stop' & pour demander de l'aide dites'/help')\n > ")
 while rep != 'stop':
     RegleCheck = trouve_regle(rep)
     print(RegleCheck)
