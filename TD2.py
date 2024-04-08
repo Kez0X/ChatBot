@@ -338,7 +338,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "Gestion des erreurs",
-        "motif": "(?i)(comment gére tu|comment tu gére|tu géres comment|comment tu fais avec|comment tu t'en sors avec) les erreurs dans (ton|votre) code",
+        "motif": "(?i)(comment.gére.tu|comment.tu.gére|tu.géres.comment|comment.tu.fais.avec|comment.tu.t.en.sors.avec) les erreurs dans (ton|votre) code",
         "reponse": "J'utilise des blocs try-catch pour capturer les erreurs potentielles et je les gère de manière appropriée en les journalisant ou en affichant des messages d'erreur significatifs pour l'utilisateur.",
         "score": 3,
         "fonction": None
@@ -359,7 +359,7 @@ regles_V2 = [
     },
     {
         "nomRegle": "Versionnage du code source",
-        "motif": "versionnage",
+        "motif": "(?i)(qu.est.ce.que.le |c.est.quoi.le )versionnage du code source.*",
         "reponse": "Le versionnage du code source consiste à garder une trace des modifications apportées au code au fil du temps à l'aide de systèmes de contrôle de version comme Git. Cela permet de suivre les changements, de collaborer efficacement et de revenir à des versions antérieures si nécessaire.",
         "score": 4,
         "fonction": None
