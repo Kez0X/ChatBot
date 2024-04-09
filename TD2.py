@@ -144,6 +144,35 @@ def enregistrer_nom_utilisateur(listeArgs):
         nom_utilisateur = nom_utilisateur_match.group(1)
         infos_utilisateur["nom"] = nom_utilisateur
         print("Nom de l'utilisateur enregistré :", nom_utilisateur)
+        rep = "Bonjour " + nom_utilisateur + ", que puis-je faire pour vous ?"
+        regles_V2.append({
+        # On a le nom de la règle
+        "nomRegle": "règle Bonjour",
+        # Le motif, il faudra qu'il y est ce motif dans la demande rentrée par l'utilisateur
+        "motif": "[b|B][o|ô|ó|ò]n[j|g]o[u|ù|ú|ü]r",
+        # La réponse que nous renvoyons
+        "reponse": rep,
+        #Le score est l'importance accordé à la reconnaissance du motif dans un prompt (1<2<3<4<5).
+        "score": 5,
+        #C'est ici que les fonctions sont associées aux dictionnaires
+        "fonction": None
+        })
+        rep = "Salut " + nom_utilisateur + ", comment puis-je vous aider ?"
+        regles_V2.append({
+        "nomRegle": "règle Salut",
+        "motif": "(?i)salut",
+        "reponse": rep,
+        "score": 5,
+        "fonction": None
+        })
+        rep = "Pas de souci " + nom_utilisateur + " !"
+        regles_V2.append({
+            "nomRegle": "règle Remerciement",
+            "motif": "(?i)merci",
+            "reponse": rep,
+            "score": 5,
+            "fonction": None
+        })
 
 def addition(listeArgs):
     reponse_utilisateur, reponse_bot = listeArgs
@@ -200,7 +229,7 @@ regles_V2 = [
         # La réponse que nous renvoyons
         "reponse": "Bonjour, que puis-je faire pour vous ?",
         #Le score est l'importance accordé à la reconnaissance du motif dans un prompt (1<2<3<4<5).
-        "score": 5,
+        "score": 4,
         #C'est ici que les fonctions sont associées aux dictionnaires
         "fonction": None
     },
