@@ -11,15 +11,16 @@ Ce projet contient un chatbot simple nommé LD. Le chatbot répond à diverses e
 - **Enregistrement des données:** LD peut enregistrer des informations telles que le nom de l'utilisateur.
 - **Reconnaissance de motifs:** Il reconnaît les schémas dans les entrées de l'utilisateur pour sélectionner la réponse appropriée.
 - **Gestion des erreurs:** Le chatbot gère les erreurs en fournissant une réponse par défaut lorsque la requête de l'utilisateur ne correspond à aucune règle prédéfinie.
+- **Opération classiques:** LD peut effectuer les opérations dites classiques, telles que des additions, des soustractions, des multiplications et des divisions.
 
 ## Règles de conversation
 
-Les règles de conversation sont définies dans le fichier Python `LD_chatbot.py`. Elles sont organisées en deux versions, `regles_V1` et `regles_V2`, chacune décrivant les motifs de saisie de l'utilisateur et les réponses correspondantes.
+Les règles de conversation sont définies dans le fichier Python `TD2.py`. Elles sont organisées en deux versions, `regles_V1` et `regles_V2`, chacune décrivant les motifs de saisie de l'utilisateur et les réponses correspondantes.
 
 ## Utilisation
 
-Pour utiliser le chatbot LD, exécutez le fichier Python `LD_chatbot.py`. Il vous invitera à poser des questions ou à engager une conversation.
+Pour utiliser le chatbot LD, exécutez le fichier Python `TD2.py`. Il vous invitera à poser des questions ou à engager une conversation.
 
 ```bash
-python LD_chatbot.py
+python TD2.py
 ```
